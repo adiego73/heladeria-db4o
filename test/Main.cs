@@ -2,7 +2,7 @@ using System;
 using Gtk;
 using Db4objects.Db4o;
 
-namespace test
+namespace Heladeria
 {
 	class MainClass
 	{

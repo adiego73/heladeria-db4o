@@ -1,6 +1,6 @@
 using System;
 using Gtk;
-using test;
+using Heladeria.model;
 
 public partial class MainWindow: Gtk.Window
 {	

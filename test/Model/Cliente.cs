@@ -1,6 +1,6 @@
 using System;
 
-namespace test
+namespace Heladeria.model
 {
 	public class Cliente
 	{

@@ -3,7 +3,7 @@ using Db4objects.Db4o;
 using Db4objects.Db4o.Ext;
 using Db4objects.Db4o.Query;
 
-namespace test
+namespace Heladeria.db
 {
 	public class DB
 	{
@@ -16,6 +16,8 @@ namespace test
 				container.Close ();
 			}
 		}
+		
+		//private static Cliente find()
 		
 		public static void test ()
 		{

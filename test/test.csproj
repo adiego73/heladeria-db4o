@@ -78,6 +78,8 @@
     <Compile Include="Model\Pedido.cs" />
     <Compile Include="Model\Heladeria.cs" />
     <Compile Include="DB\DB.cs" />
+    <Compile Include="DB\QueryCliente.cs" />
+    <Compile Include="DB\HQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
