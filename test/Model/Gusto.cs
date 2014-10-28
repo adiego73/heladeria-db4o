@@ -1,0 +1,20 @@
+using System;
+
+namespace test
+{
+	public class Gusto
+	{
+		private string descripcion;
+		
+		public Gusto (string desc)
+		{
+			descripcion = desc;
+		}
+		
+		public string getDescripcion ()
+		{
+			return descripcion;
+		}
+	}
+}
+
