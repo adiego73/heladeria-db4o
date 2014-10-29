@@ -13,7 +13,7 @@ namespace Heladeria.db.query
 			return this;
 		}
 
-		public QueryGusto build()
+		public Gusto build()
 		{
 			return new Gusto(descripcion);
 		}

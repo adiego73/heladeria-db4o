@@ -51,7 +51,7 @@ namespace Heladeria.db
 			return result;
 		}
 
-		public static List<Gusto> findAllPotes()
+		public static List<Pote> findAllPotes()
 		{
 			List<Pote> result = new List<Pote>();
 			IObjectSet potes = getContainer().QueryByExample(typeof(Pote));
