@@ -7,48 +7,57 @@ namespace Heladeria.model
 	public class HeladeriaAdmin
 	{
 		private static HeladeriaAdmin admin = null;
-		private List<Gusto> gustos;
-		private List<Pote> potes;
 		
-		public static HeladeriaAdmin build ()
+		public static HeladeriaAdmin build()
 		{
 			if (admin != null) {
 				return admin;
 			}
+
+			cleanDb();
+
+			DB.saveGusto(new Gusto("vainilla"));
+			DB.saveGusto(new Gusto("chocolate"));
+			DB.saveGusto(new Gusto("frutilla"));
+			DB.saveGusto(new Gusto("sambayon"));
+			DB.saveGusto(new Gusto("limon"));
 			
-			admin = new HeladeriaAdmin ();
-			admin.getGustos ().Add (new Gusto ("vainilla"));
-			admin.getGustos ().Add (new Gusto ("chocolate"));
-			admin.getGustos ().Add (new Gusto ("frutilla"));
-			admin.getGustos ().Add (new Gusto ("sambayon"));
-			admin.getGustos ().Add (new Gusto ("limon"));
-			
-			admin.getPotes ().Add (new Pote ("CUARTO_KILO"));
-			admin.getPotes ().Add (new Pote ("MEDIO_KILO"));
-			admin.getPotes ().Add (new Pote ("KILO"));
-			
+			DB.savePote(new Pote("CUARTO_KILO"));
+			DB.savePote(new Pote("MEDIO_KILO"));
+			DB.savePote(new Pote("KILO"));
+
+			admin = new HeladeriaAdmin();
 			return admin;
 		}
 		
-		public List<Gusto> getGustos ()
+		public IList<Gusto> getGustos()
 		{
-			if (gustos == null) {
-				gustos = new List<Gusto> ();
-			}
-			return gustos;
+			return DB.findAllGustos();
 		}
 		
-		public List<Pote> getPotes ()
+		public IList<Pote> getPotes()
 		{
-			if (potes == null) {
-				potes = new List<Pote> ();
-			}
-			return potes;
+			return DB.findAllPotes();
 		}
-		
-		public void test ()
+
+		public void destroy()
 		{
-			DB.test ();
+			Console.WriteLine("destruyo Heladeria");
+			DB.close();
+		}
+
+		private static void cleanDb()
+		{
+			Console.WriteLine("Limpio DB");
+			IList<Gusto> gustos = DB.findAllGustos();
+			foreach (Gusto g in gustos) {
+				DB.removeGusto(g);
+			}
+
+			IList<Pote> potes = DB.findAllPotes();
+			foreach (Pote p in potes) {
+				DB.removePote(p);
+			}
 		}
 	}
 }

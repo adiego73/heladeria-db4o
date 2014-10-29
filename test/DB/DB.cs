@@ -12,13 +12,14 @@ namespace Heladeria.db
 		readonly static string DB_PATH = "db.yap";
 		private static IObjectContainer container = null;
 		
-		private static void close()
+		public static void close()
 		{
 			if (container != null) {
+				Console.WriteLine("Container close");
 				container.Close();
 			}
 		}
-		
+
 		private static IObjectContainer getContainer()
 		{
 			if (container == null) {
@@ -26,54 +27,48 @@ namespace Heladeria.db
 			}
 			return container;
 		}
-		
-		public static List<Cliente> findAllClientes()
+
+		public static IList<Cliente> findAllClientes()
 		{
-			List<Cliente> result = new List<Cliente>();
-			IObjectSet clientes = getContainer().QueryByExample(typeof(Cliente));
-
-			foreach (Object o in clientes) {
-				result.Add((Cliente)o);
-			}
-
+			IList<Cliente> result = getContainer().Query<Cliente>(typeof(Cliente));
 			return result;
 		}
 
-		public static List<Gusto> findAllGustos()
+		public static IList<Gusto> findAllGustos()
 		{
-			List<Gusto> result = new List<Gusto>();
-			IObjectSet gustos = getContainer().QueryByExample(typeof(Gusto));
-
-			foreach (Object o in gustos) {
-				result.Add((Gusto)o);
-			}
-
+			IList<Gusto> result = getContainer().Query<Gusto>(typeof(Gusto));
 			return result;
 		}
 
-		public static List<Pote> findAllPotes()
+		public static IList<Pote> findAllPotes()
 		{
-			List<Pote> result = new List<Pote>();
-			IObjectSet potes = getContainer().QueryByExample(typeof(Pote));
-
-			foreach (Object o in potes) {
-				result.Add((Pote)o);
-			}
-
+			IList<Pote> result = getContainer().Query<Pote>(typeof(Pote));
 			return result;
 		}
 
-		public static void test()
+		public static void saveCliente(Cliente c)
 		{
-			try {
-				container = Db4oEmbedded.OpenFile(DB_PATH);
-				container.Store(new Pote("KILO"));
-				IObjectSet objSet = container.QueryByExample(new Pote(null));
-				
-				Console.Write(objSet[0].ToString());
-			} catch (Exception e) {
-				Console.Write(e.Message);
-			}
+			getContainer().Store(c);
+		}
+
+		public static void savePote(Pote p)
+		{
+			getContainer().Store(p);
+		}
+
+		public static void saveGusto(Gusto g)
+		{
+			getContainer().Store(g);
+		}
+
+		public static void removeGusto(Gusto g)
+		{
+			getContainer().Delete(g);
+		}
+
+		public static void removePote(Pote p)
+		{
+			getContainer().Delete(p);
 		}
 	}
 }
