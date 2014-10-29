@@ -80,8 +80,6 @@
     <Compile Include="Model\HeladeriaAdmin.cs" />
     <Compile Include="DB\Query\IHQuery.cs" />
     <Compile Include="DB\Query\QueryCliente.cs" />
-    <Compile Include="DB\Query\QueryPote.cs" />
-    <Compile Include="DB\Query\QueryGusto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

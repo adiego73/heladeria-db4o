@@ -21,12 +21,10 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnBtnBuscarClicked(object sender, System.EventArgs e)
 	{
-		string mensaje = "";
-		foreach (Gusto g in heladeria.getGustos()) {
-			mensaje += g.getDescripcion() + " ";
-		}
-		
-		MessageDialog d = new MessageDialog(this, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok, mensaje, "hola");
+		string telefono = txt_cliente.Text;
+		Cliente c = heladeria.getCliente(telefono);
+
+		MessageDialog d = new MessageDialog(this, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok, c.getNombre() + " " + c.getTelefono(), "hola");
 		d.Show();
 		
 

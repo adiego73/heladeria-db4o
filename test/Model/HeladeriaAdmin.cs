@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Heladeria.db;
+using Heladeria.db.query;
 
 namespace Heladeria.model
 {
@@ -16,15 +17,17 @@ namespace Heladeria.model
 
 			cleanDb();
 
-			DB.saveGusto(new Gusto("vainilla"));
-			DB.saveGusto(new Gusto("chocolate"));
-			DB.saveGusto(new Gusto("frutilla"));
-			DB.saveGusto(new Gusto("sambayon"));
-			DB.saveGusto(new Gusto("limon"));
+			DB.save<Gusto>(new Gusto("vainilla"));
+			DB.save<Gusto>(new Gusto("chocolate"));
+			DB.save<Gusto>(new Gusto("frutilla"));
+			DB.save<Gusto>(new Gusto("sambayon"));
+			DB.save<Gusto>(new Gusto("limon"));
 			
-			DB.savePote(new Pote("CUARTO_KILO"));
-			DB.savePote(new Pote("MEDIO_KILO"));
-			DB.savePote(new Pote("KILO"));
+			DB.save<Pote>(new Pote("CUARTO_KILO"));
+			DB.save<Pote>(new Pote("MEDIO_KILO"));
+			DB.save<Pote>(new Pote("KILO"));
+
+			DB.save<Cliente>(new Cliente("diego", "1234"));
 
 			admin = new HeladeriaAdmin();
 			return admin;
@@ -32,12 +35,18 @@ namespace Heladeria.model
 		
 		public IList<Gusto> getGustos()
 		{
-			return DB.findAllGustos();
+			return DB.getAll<Gusto>();
 		}
 		
 		public IList<Pote> getPotes()
 		{
-			return DB.findAllPotes();
+			return DB.getAll<Pote>();
+		}
+
+		public Cliente getCliente(string telefono)
+		{
+			QueryCliente query = new QueryCliente().setTelefono(telefono);
+			return DB.getOne<Cliente>(query);
 		}
 
 		public void destroy()
@@ -49,14 +58,14 @@ namespace Heladeria.model
 		private static void cleanDb()
 		{
 			Console.WriteLine("Limpio DB");
-			IList<Gusto> gustos = DB.findAllGustos();
+			IList<Gusto> gustos = DB.getAll<Gusto>();
 			foreach (Gusto g in gustos) {
-				DB.removeGusto(g);
+				DB.remove<Gusto>(g);
 			}
 
-			IList<Pote> potes = DB.findAllPotes();
+			IList<Pote> potes = DB.getAll<Pote>();
 			foreach (Pote p in potes) {
-				DB.removePote(p);
+				DB.remove<Pote>(p);
 			}
 		}
 	}

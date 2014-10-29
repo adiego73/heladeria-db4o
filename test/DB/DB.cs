@@ -3,6 +3,7 @@ using Db4objects.Db4o;
 using Db4objects.Db4o.Ext;
 using Db4objects.Db4o.Query;
 using Heladeria.model;
+using Heladeria.db.query;
 using System.Collections.Generic;
 
 namespace Heladeria.db
@@ -28,47 +29,38 @@ namespace Heladeria.db
 			return container;
 		}
 
-		public static IList<Cliente> findAllClientes()
+		public static IList<T> getAll<T>() where T : class
 		{
-			IList<Cliente> result = getContainer().Query<Cliente>(typeof(Cliente));
-			return result;
+			return getContainer().Query<T>(typeof(T));
 		}
 
-		public static IList<Gusto> findAllGustos()
+		public static IList<T> get<T>(IHQuery<T> query) where T : class
 		{
-			IList<Gusto> result = getContainer().Query<Gusto>(typeof(Gusto));
-			return result;
+			IList<T> lista = new List<T>();
+			IObjectSet oSet = getContainer().QueryByExample(query.build());
+			foreach (T o in oSet) {
+				lista.Add((T)o);
+			}
+			return lista;
 		}
 
-		public static IList<Pote> findAllPotes()
+		public static T getOne<T>(IHQuery<T> query) where T : class
 		{
-			IList<Pote> result = getContainer().Query<Pote>(typeof(Pote));
-			return result;
+			IObjectSet oSet = getContainer().QueryByExample(query.build());
+			if (oSet.Count > 0) {
+				return ((T)oSet[0]);
+			}
+			return null;
+		}
+		
+		public static void save<T>(T o)
+		{
+			getContainer().Store(o);
 		}
 
-		public static void saveCliente(Cliente c)
+		public static void remove<T>(T o)
 		{
-			getContainer().Store(c);
-		}
-
-		public static void savePote(Pote p)
-		{
-			getContainer().Store(p);
-		}
-
-		public static void saveGusto(Gusto g)
-		{
-			getContainer().Store(g);
-		}
-
-		public static void removeGusto(Gusto g)
-		{
-			getContainer().Delete(g);
-		}
-
-		public static void removePote(Pote p)
-		{
-			getContainer().Delete(p);
+			getContainer().Delete(o);
 		}
 	}
 }
