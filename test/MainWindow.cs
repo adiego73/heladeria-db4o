@@ -4,12 +4,12 @@ using Heladeria.model;
 
 public partial class MainWindow: Gtk.Window
 {	
-	private Heladeria heladeria;
+	private HeladeriaAdmin heladeria;
 
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
-		heladeria = Heladeria.build ();
+		heladeria = HeladeriaAdmin.build ();
 	}
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)

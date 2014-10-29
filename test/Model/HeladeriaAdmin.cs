@@ -1,21 +1,22 @@
 using System;
 using System.Collections.Generic;
+using Heladeria.db;
 
 namespace Heladeria.model
 {
-	public class Heladeria
+	public class HeladeriaAdmin
 	{
-		private static Heladeria admin = null;
+		private static HeladeriaAdmin admin = null;
 		private List<Gusto> gustos;
 		private List<Pote> potes;
 		
-		public static Heladeria build ()
+		public static HeladeriaAdmin build ()
 		{
 			if (admin != null) {
 				return admin;
 			}
 			
-			admin = new Heladeria ();
+			admin = new HeladeriaAdmin ();
 			admin.getGustos ().Add (new Gusto ("vainilla"));
 			admin.getGustos ().Add (new Gusto ("chocolate"));
 			admin.getGustos ().Add (new Gusto ("frutilla"));
