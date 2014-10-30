@@ -28,7 +28,9 @@ public partial class MainWindow: Gtk.Window
 
 		if (c == null) {
 			// creo la ventana para agregar
+			return;
 		}
+		heladeria.addClienteAPedido(c);
 	}
 
 	private void FillBox<T>(VBox box, List<T> items) where T : IEntity
@@ -55,11 +57,5 @@ public partial class MainWindow: Gtk.Window
 		} else {
 			heladeria.removeGustoAPedido(g);
 		}
-	}
-
-	protected void OnCbxGustosChanged(object sender, System.EventArgs e)
-	{
-		MessageDialog d = new MessageDialog(this, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok, ((ComboBox)sender).ActiveText, "hola");
-		d.Show();
 	}
 }

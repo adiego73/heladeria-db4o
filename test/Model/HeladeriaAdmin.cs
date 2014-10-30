@@ -105,6 +105,11 @@ namespace Heladeria.model
 			pedido = null;
 		}
 
+		public Pedido getPedido()
+		{
+			return pedido;
+		}
+
 		private static void cleanDb()
 		{
 			Console.WriteLine("Limpio DB");
