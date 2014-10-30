@@ -18,6 +18,8 @@ namespace Heladeria.db
 			if (container != null) {
 				Console.WriteLine("Container close");
 				container.Close();
+				container.Dispose();
+				container = null;
 			}
 		}
 

@@ -2,7 +2,7 @@ using System;
 
 namespace Heladeria.model
 {
-	public class Cliente
+	public class Cliente : IEntity
 	{
 		private string nombre;
 		private string telefono;

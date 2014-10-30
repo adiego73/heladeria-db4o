@@ -2,19 +2,20 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="test/DB/DB.cs">
     <Files>
-      <File FileName="test/Main.cs" Line="13" Column="16" />
-      <File FileName="test/DB/IHQuery.cs" Line="5" Column="20" />
-      <File FileName="test/DB/QueryCliente.cs" Line="24" Column="4" />
-      <File FileName="test/MainWindow.cs" Line="9" Column="33" />
-      <File FileName="test/Model/HeladeriaAdmin.cs" Line="3" Column="20" />
-      <File FileName="test/DB/DB.cs" Line="5" Column="12" />
+      <File FileName="test/MainWindow.cs" Line="28" Column="3" />
+      <File FileName="test/Model/HeladeriaAdmin.cs" Line="38" Column="18" />
+      <File FileName="test/Model/IListable.cs" Line="3" Column="26" />
+      <File FileName="test/Model/Gusto.cs" Line="20" Column="4" />
+      <File FileName="test/Model/Pote.cs" Line="20" Column="4" />
+      <File FileName="test/DB/DB.cs" Line="36" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
+          <Option id="ShowAllFiles" value="False" />
           <Node name="test" expanded="True">
-            <Node name="References" expanded="True" />
             <Node name="DB" expanded="True">
+              <Node name="Query" expanded="True" />
               <Node name="DB.cs" selected="True" />
             </Node>
             <Node name="Model" expanded="True" />
@@ -24,7 +25,10 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/home/diego/proyectos/mono/heladeria-db4o/test/DB/DB.cs" line="105" />
+      <Breakpoint file="/home/diego/proyectos/mono/heladeria-db4o/test/DB/DB.cs" line="36" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

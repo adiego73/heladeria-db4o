@@ -2,7 +2,7 @@ using System;
 
 namespace Heladeria.model
 {
-	public class Gusto
+	public class Gusto : IEntity
 	{
 		private string descripcion;
 		
@@ -12,6 +12,11 @@ namespace Heladeria.model
 		}
 		
 		public string getDescripcion()
+		{
+			return descripcion;
+		}
+
+		public override string ToString()
 		{
 			return descripcion;
 		}
