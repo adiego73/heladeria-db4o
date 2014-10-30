@@ -85,6 +85,8 @@
     <Compile Include="DB\Query\QueryPote.cs" />
     <Compile Include="ClienteWindow.cs" />
     <Compile Include="gtk-gui\ClienteWindow.cs" />
+    <Compile Include="Model\Solicitud.cs" />
+    <Compile Include="DB\Query\QueryPedido.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

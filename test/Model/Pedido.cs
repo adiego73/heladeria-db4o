@@ -9,6 +9,7 @@ namespace Heladeria.model
 		private string observaciones;
 		private Cliente cliente;
 		private Pote pote;
+		private float pagaCon;
 
 		public Pedido()
 		{
@@ -61,6 +62,16 @@ namespace Heladeria.model
 				gustos = new List<Gusto>();
 			}
 			gustos.Add(g);
+		}
+
+		public void setPagaCon(float f)
+		{
+			this.pagaCon = f;
+		}
+
+		public float getPagaCon()
+		{
+			return this.pagaCon;
 		}
 
 		public override string ToString()

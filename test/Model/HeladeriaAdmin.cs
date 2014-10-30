@@ -101,6 +101,11 @@ namespace Heladeria.model
 			pedido.setPote(p);
 		}
 
+		public void addObsAPedido(string o)
+		{
+			pedido.setObservaciones(o);
+		}
+
 		public void clearPedido()
 		{
 			pedido = new Pedido();
@@ -119,7 +124,6 @@ namespace Heladeria.model
 		public void savePedido()
 		{
 			DB.save<Pedido>(pedido);
-			clearPedido();
 		}
 
 		public void saveCliente(Cliente c)
@@ -139,6 +143,17 @@ namespace Heladeria.model
 			foreach (Pote p in potes) {
 				DB.remove<Pote>(p);
 			}
+		}
+
+		public void addPagaConAPedido(float f)
+		{
+			pedido.setPagaCon(f);
+		}
+
+		public Pedido getLastPedido()
+		{
+			List<Pedido> pedidos = new List<Pedido>(DB.getAll<Pedido>());
+			return pedidos[0];
 		}
 	}
 }

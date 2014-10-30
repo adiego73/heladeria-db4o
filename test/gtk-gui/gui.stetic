@@ -8,7 +8,7 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/test.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="1024 592">
+  <widget class="Gtk.Window" id="MainWindow" design-size="722 592">
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -17,7 +17,7 @@
       <widget class="Gtk.HPaned" id="hpaned2">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="Position">322</property>
+        <property name="Position">230</property>
         <child>
           <widget class="Gtk.Frame" id="frame7">
             <property name="MemberName" />
@@ -38,6 +38,7 @@
                         <property name="CanFocus">True</property>
                         <property name="IsEditable">True</property>
                         <property name="InvisibleChar">•</property>
+                        <signal name="TextInserted" handler="OnTxtClienteTextInserted" />
                       </widget>
                       <packing>
                         <property name="X">1</property>
@@ -70,20 +71,6 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Button" id="btn_guardar">
-                        <property name="MemberName" />
-                        <property name="CanFocus">True</property>
-                        <property name="Type">TextOnly</property>
-                        <property name="Label" translatable="yes">Guardar</property>
-                        <property name="UseUnderline">True</property>
-                        <signal name="Clicked" handler="OnBtnGuardarClicked" />
-                      </widget>
-                      <packing>
-                        <property name="X">87</property>
-                        <property name="Y">451</property>
-                      </packing>
-                    </child>
-                    <child>
                       <widget class="Gtk.Label" id="label7">
                         <property name="MemberName" />
                         <property name="LabelProp" translatable="yes">&lt;b&gt;Monto con el que paga&lt;/b&gt;</property>
@@ -100,6 +87,7 @@
                         <property name="CanFocus">True</property>
                         <property name="IsEditable">True</property>
                         <property name="InvisibleChar">•</property>
+                        <signal name="Changed" handler="OnTxtMontoChanged" />
                       </widget>
                       <packing>
                         <property name="X">9</property>
@@ -155,6 +143,7 @@
                         <property name="MemberName" />
                         <property name="IsTextCombo">True</property>
                         <property name="Items" translatable="yes" />
+                        <signal name="Changed" handler="OnCbxPotesChanged" />
                       </widget>
                       <packing>
                         <property name="X">11</property>
@@ -181,6 +170,34 @@
                         <property name="Y">78</property>
                       </packing>
                     </child>
+                    <child>
+                      <widget class="Gtk.Button" id="btn_guardar">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextOnly</property>
+                        <property name="Label" translatable="yes">Guardar</property>
+                        <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="OnBtnGuardarClicked" />
+                      </widget>
+                      <packing>
+                        <property name="X">16</property>
+                        <property name="Y">461</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Button" id="btn_imprimir">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextOnly</property>
+                        <property name="Label" translatable="yes">Imprimir solicitud</property>
+                        <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="OnBtnImprimirClicked" />
+                      </widget>
+                      <packing>
+                        <property name="X">96</property>
+                        <property name="Y">460</property>
+                      </packing>
+                    </child>
                   </widget>
                 </child>
               </widget>
@@ -194,7 +211,7 @@
           <widget class="Gtk.HPaned" id="hpaned3">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="Position">296</property>
+            <property name="Position">208</property>
             <child>
               <widget class="Gtk.Frame" id="frame10">
                 <property name="MemberName" />

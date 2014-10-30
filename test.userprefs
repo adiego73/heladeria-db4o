@@ -1,24 +1,27 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="test/DB/DB.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="test/MainWindow.cs">
     <Files>
-      <File FileName="test/MainWindow.cs" Line="28" Column="3" />
-      <File FileName="test/Model/HeladeriaAdmin.cs" Line="38" Column="18" />
-      <File FileName="test/Model/IListable.cs" Line="3" Column="26" />
+      <File FileName="test/MainWindow.cs" Line="88" Column="28" />
+      <File FileName="test/Model/HeladeriaAdmin.cs" Line="110" Column="4" />
       <File FileName="test/Model/Gusto.cs" Line="20" Column="4" />
       <File FileName="test/Model/Pote.cs" Line="20" Column="4" />
-      <File FileName="test/DB/DB.cs" Line="36" Column="1" />
+      <File FileName="test/DB/DB.cs" Line="39" Column="66" />
+      <File FileName="test/ClienteWindow.cs" Line="1" Column="1" />
+      <File FileName="test/Model/Pedido.cs" Line="70" Column="4" />
+      <File FileName="test/Model/Solicitud.cs" Line="23" Column="37" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowAllFiles" value="False" />
           <Node name="test" expanded="True">
+            <Node name="UserInterface" expanded="True" />
             <Node name="DB" expanded="True">
               <Node name="Query" expanded="True" />
-              <Node name="DB.cs" selected="True" />
             </Node>
             <Node name="Model" expanded="True" />
+            <Node name="MainWindow.cs" selected="True" />
           </Node>
         </State>
       </Pad>

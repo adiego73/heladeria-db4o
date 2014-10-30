@@ -2,6 +2,7 @@ using System;
 using Gtk;
 using Heladeria.model;
 using System.Collections.Generic;
+using System.Globalization;
 
 public partial class MainWindow: Gtk.Window
 {	
@@ -80,6 +81,111 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnBtnGuardarClicked(object sender, System.EventArgs e)
 	{
-		Console.WriteLine(heladeria.getPedido().ToString());
+
+		if (heladeria.getPedido().getCliente() == null) {
+			showError("Debe ingresar un cliente");
+			return;
+		}
+		if (heladeria.getPedido().getPote() == null) {
+			showError("Debe ingresar un pote");
+			return;
+		}
+		if (heladeria.getPedido().getGustos().Count <= 0) {
+			showError("Debe ingresar al menos un gusto");
+			return;
+		}
+
+		float monto = 0;
+		try {
+			if (txt_monto.Text != null && txt_monto.Text != "") {
+				monto = float.Parse(txt_monto.Text, CultureInfo.InvariantCulture.NumberFormat);
+			}
+		} catch (FormatException ex) {
+
+		}
+
+		if (monto >= heladeria.getPedido().getPote().getValor()) {
+			heladeria.addObsAPedido(txt_observaciones.Buffer.Text);
+			heladeria.savePedido();
+			heladeria.clearPedido();
+		} else {
+			showError("Debe pagar el total como minimo");
+		}
+	}
+
+	protected void OnCbxPotesChanged(object sender, System.EventArgs e)
+	{
+		lbl_total.UseMarkup = true;
+		ComboBox box = (ComboBox)sender;
+		string poteDesc = box.ActiveText;
+		Pote p = heladeria.getPote(poteDesc);
+
+		if (p == null) {
+			return;
+		}
+
+		heladeria.addPoteAPedido(p);
+		lbl_total.Markup = "<span size=\"xx-large\"><b>" + p.getValor() + "</b></span>";
+	}
+
+	protected void OnTxtMontoChanged(object sender, System.EventArgs e)
+	{
+		if (txt_monto.Text == "" || txt_monto.Text == null) {
+			return;
+		}
+
+		lbl_vuelto.UseMarkup = true;
+		if (heladeria.getPedido() != null && heladeria.getPedido().getPote() != null) {
+			float valor = heladeria.getPedido().getPote().getValor();
+
+			try {
+				float monto = float.Parse(txt_monto.Text, CultureInfo.InvariantCulture.NumberFormat);
+				float vuelto = monto - valor;
+				heladeria.addPagaConAPedido(monto);
+				lbl_vuelto.Markup = "<span size=\"xx-large\"><b>" + vuelto + "</b></span>";
+			} catch (FormatException ex) {
+				showError("Debe ingresar un numero");
+			}
+		} else {
+			lbl_vuelto.Markup = "<span size=\"xx-large\"><b>0</b></span>";
+		}
+	}
+
+	private void showError(string message)
+	{
+		MessageDialog d = new MessageDialog(this, DialogFlags.Modal, MessageType.Error, ButtonsType.Ok, true, message, "");
+		ResponseType resp = (ResponseType)d.Run();
+
+		if (resp == ResponseType.Ok) {
+			d.Hide();
+			d.Destroy();
+		}
+	}
+
+	protected void OnTxtClienteTextInserted(object o, Gtk.TextInsertedArgs args)
+	{
+		try {
+			int pos = ((Entry)o).Position;
+			string c = ((Entry)o).GetChars(pos, pos + 1);
+			char d;
+			Char.TryParse(c[0].ToString(), out d);
+			if (!(d >= '0' && d <= '9')) {
+				((Entry)o).SelectRegion(pos, pos + 1);
+				((Entry)o).DeleteSelection();
+			}
+		} catch (System.IndexOutOfRangeException e) {
+		}
+	}
+
+	protected void OnBtnImprimirClicked(object sender, System.EventArgs e)
+	{
+		Pedido p = heladeria.getLastPedido();
+		if (p != null) {
+			Solicitud s = new Solicitud();
+			s.setPedido(p);
+			s.setMonto(p.getPagaCon());
+
+			s.printToFile();
+		}
 	}
 }
