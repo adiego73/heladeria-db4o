@@ -108,6 +108,7 @@ public partial class MainWindow: Gtk.Window
 			heladeria.addObsAPedido(txt_observaciones.Buffer.Text);
 			heladeria.savePedido();
 			heladeria.clearPedido();
+			limpiarForm();
 		} else {
 			showError("Debe pagar el total como minimo");
 		}
@@ -174,6 +175,20 @@ public partial class MainWindow: Gtk.Window
 				((Entry)o).DeleteSelection();
 			}
 		} catch (System.IndexOutOfRangeException e) {
+		}
+	}
+
+	private void limpiarForm()
+	{
+		txt_cliente.Text = "";
+		lbl_cliente.Text = "";
+		lbl_total.UseMarkup = true;
+		lbl_total.Markup = "<span size=\"xx-large\"><b>0</b></span>";
+		lbl_vuelto.UseMarkup = true;
+		lbl_vuelto.Markup = "<span size=\"xx-large\"><b>0</b></span>";
+		txt_observaciones.Buffer.Text = "";
+		foreach (CheckButton check in box_gustos.Children) {
+			check.Active = false;
 		}
 	}
 
