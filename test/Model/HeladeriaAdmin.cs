@@ -9,7 +9,12 @@ namespace Heladeria.model
 	{
 		private static HeladeriaAdmin admin = null;
 		private Pedido pedido;
-		
+
+		private HeladeriaAdmin()
+		{
+			pedido = new Pedido();
+		}
+
 		public static HeladeriaAdmin build()
 		{
 			if (admin != null) {
@@ -19,13 +24,19 @@ namespace Heladeria.model
 			cleanDb();
 
 			DB.save<Gusto>(new Gusto("vainilla"));
+			DB.save<Gusto>(new Gusto("frambueza"));
+			DB.save<Gusto>(new Gusto("crema americana"));
+			DB.save<Gusto>(new Gusto("chocolate suizo"));
+			DB.save<Gusto>(new Gusto("chocolate amargo"));
+			DB.save<Gusto>(new Gusto("banana split"));
+			DB.save<Gusto>(new Gusto("tramontanas"));
 			DB.save<Gusto>(new Gusto("chocolate"));
 			DB.save<Gusto>(new Gusto("frutilla"));
 			DB.save<Gusto>(new Gusto("sambayon"));
 			DB.save<Gusto>(new Gusto("limon"));
 			
-			DB.save<Pote>(new Pote("CUARTO_KILO", 20));
-			DB.save<Pote>(new Pote("MEDIO_KILO", 35));
+			DB.save<Pote>(new Pote("CUARTO KILO", 20));
+			DB.save<Pote>(new Pote("MEDIO KILO", 35));
 			DB.save<Pote>(new Pote("KILO", 50));
 
 			admin = new HeladeriaAdmin();
@@ -54,13 +65,6 @@ namespace Heladeria.model
 			DB.close();
 		}
 
-		private void validatePedido()
-		{
-			if (pedido == null) {
-				pedido = new Pedido();
-			}
-		}
-
 		public Gusto getGusto(string descripcion)
 		{
 			QueryGusto query = new QueryGusto().addDescripcion(descripcion);
@@ -75,13 +79,11 @@ namespace Heladeria.model
 
 		public void addClienteAPedido(Cliente c)
 		{
-			validatePedido();
 			pedido.setCliente(c);
 		}
 
 		public void addGustoAPedido(Gusto g)
 		{
-			validatePedido();
 			pedido.addGusto(g);
 			Console.WriteLine("agreog gusto: " + g.ToString());
 		}
@@ -96,18 +98,33 @@ namespace Heladeria.model
 
 		public void addPoteAPedido(Pote p)
 		{
-			validatePedido();
 			pedido.setPote(p);
 		}
 
 		public void clearPedido()
 		{
-			pedido = null;
+			pedido = new Pedido();
+		}
+
+		public void createPedido()
+		{
+			this.pedido = new Pedido();
 		}
 
 		public Pedido getPedido()
 		{
-			return pedido;
+			return this.pedido;
+		}
+
+		public void savePedido()
+		{
+			DB.save<Pedido>(pedido);
+			clearPedido();
+		}
+
+		public void saveCliente(Cliente c)
+		{
+			DB.save<Cliente>(c);
 		}
 
 		private static void cleanDb()

@@ -33,6 +33,11 @@ namespace Heladeria.model
 			return telefono;
 		}
 
+		public override string ToString()
+		{
+			return this.nombre + " " + this.telefono;
+		}
+
 		public override bool Equals(object o)
 		{
 			Cliente c = o as Cliente;

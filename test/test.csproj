@@ -83,6 +83,8 @@
     <Compile Include="Model\IEntity.cs" />
     <Compile Include="DB\Query\QueryGusto.cs" />
     <Compile Include="DB\Query\QueryPote.cs" />
+    <Compile Include="ClienteWindow.cs" />
+    <Compile Include="gtk-gui\ClienteWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

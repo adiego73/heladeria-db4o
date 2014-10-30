@@ -13,12 +13,6 @@ namespace Heladeria.model
 		public Pedido()
 		{
 		}
-
-		public Pedido(Cliente c, Pote p)
-		{
-			cliente = c;
-			pote = p;
-		}
 		
 		public List<Gusto> getGustos()
 		{
@@ -35,6 +29,9 @@ namespace Heladeria.model
 		
 		public string getObservaciones()
 		{
+			if (observaciones == null) {
+				observaciones = "";
+			}
 			return observaciones;
 		}
 
@@ -64,6 +61,19 @@ namespace Heladeria.model
 				gustos = new List<Gusto>();
 			}
 			gustos.Add(g);
+		}
+
+		public override string ToString()
+		{
+			string p = "";
+
+			p += this.getCliente().ToString() + "\n";
+			p += this.getPote().ToString() + "\n";
+			p += this.getObservaciones() + "\n";
+			foreach (Gusto g in this.getGustos()) {
+				p += g.ToString() + " ";
+			}
+			return p;
 		}
 	}
 }

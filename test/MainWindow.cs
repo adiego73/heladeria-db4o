@@ -11,7 +11,9 @@ public partial class MainWindow: Gtk.Window
 	{
 		Build();
 		heladeria = HeladeriaAdmin.build();
-		FillBox<Gusto>(box_gustos, heladeria.getGustos());
+		heladeria.createPedido();
+		fillBox<Gusto>(box_gustos, heladeria.getGustos());
+		fillCombo<Pote>(cbx_potes, heladeria.getPotes());
 	}
 	
 	protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -27,23 +29,40 @@ public partial class MainWindow: Gtk.Window
 		Cliente c = heladeria.getCliente(telefono);
 
 		if (c == null) {
-			// creo la ventana para agregar
+			ClienteWindow cWin = new ClienteWindow(telefono);
+			cWin.Modal = true;
+			cWin.Show();
 			return;
 		}
 		heladeria.addClienteAPedido(c);
+		lbl_cliente.Text = c.ToString();
 	}
 
-	private void FillBox<T>(VBox box, List<T> items) where T : IEntity
+	private void fillBox<T>(VBox box, List<T> items) where T : IEntity
 	{
 		foreach (T o in items) {
 			CheckButton check = new CheckButton(o.ToString());
 			check.Show();
-			check.Clicked += changeEvent;
+			check.Clicked += changeEventGusto;
 			box.PackStart(check);
 		}
 	}
 
-	public void changeEvent(object sender, System.EventArgs args)
+	private void fillCombo<T>(ComboBox cb, List<T> items) where T : IEntity
+	{
+		cb.Clear();
+		CellRendererText cell = new CellRendererText();
+		cb.PackStart(cell, false);
+		cb.AddAttribute(cell, "text", 0);
+		ListStore store = new ListStore(typeof(string));
+		cb.Model = store;
+
+		foreach (T o in items) {
+			store.AppendValues(o.ToString());
+		}
+	}
+
+	public void changeEventGusto(object sender, System.EventArgs args)
 	{
 		CheckButton check = ((CheckButton)sender);
 		Gusto g = heladeria.getGusto(check.Label);
@@ -57,5 +76,10 @@ public partial class MainWindow: Gtk.Window
 		} else {
 			heladeria.removeGustoAPedido(g);
 		}
+	}
+
+	protected void OnBtnGuardarClicked(object sender, System.EventArgs e)
+	{
+		Console.WriteLine(heladeria.getPedido().ToString());
 	}
 }
