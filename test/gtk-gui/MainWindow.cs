@@ -252,6 +252,7 @@ public partial class MainWindow
 		this.txt_cliente.TextInserted += new global::Gtk.TextInsertedHandler (this.OnTxtClienteTextInserted);
 		this.btn_buscar.Clicked += new global::System.EventHandler (this.OnBtnBuscarClicked);
 		this.txt_monto.Changed += new global::System.EventHandler (this.OnTxtMontoChanged);
+		this.txt_monto.TextInserted += new global::Gtk.TextInsertedHandler (this.OnTxtMontoTextInserted);
 		this.cbx_potes.Changed += new global::System.EventHandler (this.OnCbxPotesChanged);
 		this.btn_guardar.Clicked += new global::System.EventHandler (this.OnBtnGuardarClicked);
 		this.btn_imprimir.Clicked += new global::System.EventHandler (this.OnBtnImprimirClicked);

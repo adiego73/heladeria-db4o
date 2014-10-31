@@ -37,5 +37,20 @@ public partial class ClienteWindow : Gtk.Window
 		}
 	}
 
+	protected void OnTxtTelefonoTextInserted(object o, Gtk.TextInsertedArgs args)
+	{
+		try {
+			int pos = ((Entry)o).Position;
+			string c = ((Entry)o).GetChars(pos, pos + 1);
+			char d;
+			Char.TryParse(c[0].ToString(), out d);
+			if (!(d >= '0' && d <= '9')) {
+				((Entry)o).SelectRegion(pos, pos + 1);
+				((Entry)o).DeleteSelection();
+			}
+		} catch (System.IndexOutOfRangeException e) {
+			Console.WriteLine(e.Message);
+		}
+	}
 }
 

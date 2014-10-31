@@ -153,7 +153,7 @@ namespace Heladeria.model
 		public Pedido getLastPedido()
 		{
 			List<Pedido> pedidos = new List<Pedido>(DB.getAll<Pedido>());
-			return pedidos[0];
+			return pedidos[pedidos.Count - 1];
 		}
 	}
 }

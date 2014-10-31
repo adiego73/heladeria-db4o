@@ -88,6 +88,7 @@
                         <property name="IsEditable">True</property>
                         <property name="InvisibleChar">•</property>
                         <signal name="Changed" handler="OnTxtMontoChanged" />
+                        <signal name="TextInserted" handler="OnTxtMontoTextInserted" />
                       </widget>
                       <packing>
                         <property name="X">9</property>
@@ -311,6 +312,7 @@
             <property name="CanFocus">True</property>
             <property name="IsEditable">True</property>
             <property name="InvisibleChar">•</property>
+            <signal name="TextInserted" handler="OnTxtTelefonoTextInserted" />
           </widget>
           <packing>
             <property name="X">24</property>

@@ -58,6 +58,7 @@ public partial class MainWindow: Gtk.Window
 		ListStore store = new ListStore(typeof(string));
 		cb.Model = store;
 
+		store.AppendValues("-");
 		foreach (T o in items) {
 			store.AppendValues(o.ToString());
 		}
@@ -101,7 +102,7 @@ public partial class MainWindow: Gtk.Window
 				monto = float.Parse(txt_monto.Text, CultureInfo.InvariantCulture.NumberFormat);
 			}
 		} catch (FormatException ex) {
-
+			Console.WriteLine(ex.Message);
 		}
 
 		if (monto >= heladeria.getPedido().getPote().getValor()) {
@@ -145,6 +146,7 @@ public partial class MainWindow: Gtk.Window
 				heladeria.addPagaConAPedido(monto);
 				lbl_vuelto.Markup = "<span size=\"xx-large\"><b>" + vuelto + "</b></span>";
 			} catch (FormatException ex) {
+				Console.WriteLine(ex.Message);
 				showError("Debe ingresar un numero");
 			}
 		} else {
@@ -175,6 +177,7 @@ public partial class MainWindow: Gtk.Window
 				((Entry)o).DeleteSelection();
 			}
 		} catch (System.IndexOutOfRangeException e) {
+			Console.WriteLine(e.Message);
 		}
 	}
 
@@ -182,6 +185,7 @@ public partial class MainWindow: Gtk.Window
 	{
 		txt_cliente.Text = "";
 		lbl_cliente.Text = "";
+		txt_monto.Text = "";
 		lbl_total.UseMarkup = true;
 		lbl_total.Markup = "<span size=\"xx-large\"><b>0</b></span>";
 		lbl_vuelto.UseMarkup = true;
@@ -190,6 +194,9 @@ public partial class MainWindow: Gtk.Window
 		foreach (CheckButton check in box_gustos.Children) {
 			check.Active = false;
 		}
+		Gtk.TreeIter iter;
+		cbx_potes.Model.IterNthChild(out iter, 0);
+		cbx_potes.SetActiveIter(iter);
 	}
 
 	protected void OnBtnImprimirClicked(object sender, System.EventArgs e)
@@ -201,6 +208,22 @@ public partial class MainWindow: Gtk.Window
 			s.setMonto(p.getPagaCon());
 
 			s.printToFile();
+		}
+	}
+
+	protected void OnTxtMontoTextInserted(object o, Gtk.TextInsertedArgs args)
+	{
+		try {
+			int pos = ((Entry)o).Position;
+			string c = ((Entry)o).GetChars(pos, pos + 1);
+			char d;
+			Char.TryParse(c[0].ToString(), out d);
+			if (!(d >= '0' && d <= '9')) {
+				((Entry)o).SelectRegion(pos, pos + 1);
+				((Entry)o).DeleteSelection();
+			}
+		} catch (System.IndexOutOfRangeException e) {
+			Console.WriteLine(e.Message);
 		}
 	}
 }

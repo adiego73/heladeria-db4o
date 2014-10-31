@@ -76,6 +76,7 @@ public partial class ClienteWindow
 		this.DefaultWidth = 213;
 		this.DefaultHeight = 223;
 		this.Show ();
+		this.txt_telefono.TextInserted += new global::Gtk.TextInsertedHandler (this.OnTxtTelefonoTextInserted);
 		this.btn_guardar.Clicked += new global::System.EventHandler (this.OnBtnGuardarClicked);
 	}
 }

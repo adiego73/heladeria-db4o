@@ -2,14 +2,14 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="test/MainWindow.cs">
     <Files>
-      <File FileName="test/MainWindow.cs" Line="88" Column="28" />
-      <File FileName="test/Model/HeladeriaAdmin.cs" Line="110" Column="4" />
+      <File FileName="test/MainWindow.cs" Line="87" Column="42" />
+      <File FileName="test/Model/HeladeriaAdmin.cs" Line="141" Column="4" />
       <File FileName="test/Model/Gusto.cs" Line="20" Column="4" />
       <File FileName="test/Model/Pote.cs" Line="20" Column="4" />
       <File FileName="test/DB/DB.cs" Line="39" Column="66" />
-      <File FileName="test/ClienteWindow.cs" Line="1" Column="1" />
-      <File FileName="test/Model/Pedido.cs" Line="70" Column="4" />
-      <File FileName="test/Model/Solicitud.cs" Line="23" Column="37" />
+      <File FileName="test/ClienteWindow.cs" Line="52" Column="32" />
+      <File FileName="test/Model/Pedido.cs" Line="1" Column="1" />
+      <File FileName="test/Model/Solicitud.cs" Line="27" Column="22" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -31,6 +31,8 @@
     <BreakpointStore>
       <Breakpoint file="/home/diego/proyectos/mono/heladeria-db4o/test/DB/DB.cs" line="105" />
       <Breakpoint file="/home/diego/proyectos/mono/heladeria-db4o/test/DB/DB.cs" line="36" />
+      <Breakpoint file="/home/davila/dev/otros/mono/test/test/Model/Solicitud.cs" line="36" />
+      <Breakpoint file="/home/davila/dev/otros/mono/test/test/Model/Solicitud.cs" line="26" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
